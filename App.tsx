@@ -379,7 +379,6 @@ const App: React.FC = () => {
   }) => {
     const listRef = useRef<HTMLDivElement>(null);
     const itemHeight = 48; // 更大的项高度，操作更顺手
-    const [scrolling, setScrolling] = useState(false);
 
     useEffect(() => {
       const idx = items.indexOf(value);
@@ -392,7 +391,6 @@ const App: React.FC = () => {
     }, []);
 
     const onScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-      setScrolling(true);
       const scrollTop = e.currentTarget.scrollTop;
       const idx = Math.round(scrollTop / itemHeight);
       const targetValue = items[idx];
@@ -400,10 +398,6 @@ const App: React.FC = () => {
       if (targetValue && targetValue !== value) {
         onChange(targetValue);
       }
-      
-      // 模拟滚动结束
-      const timer = setTimeout(() => setScrolling(false), 150);
-      return () => clearTimeout(timer);
     }, [items, value, onChange]);
 
     return (
