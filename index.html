@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>小迷糊倒班闹钟</title>
+    <title>爱妻倒班闹钟</title>
     
     <!-- PWA 核心标签 -->
     <link rel="manifest" href="/manifest.json">
@@ -31,7 +31,9 @@
             background-color: #f9fafb;
             overscroll-behavior-y: none;
             overflow: hidden;
+            /* 解决移动端地址栏遮挡的关键：使用 dvh */
             height: 100vh;
+            height: 100dvh;
             width: 100vw;
         }
 
