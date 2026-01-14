@@ -289,7 +289,7 @@ const App: React.FC = () => {
                 { id: 'meal', label: '用餐时间', icon: Coffee, value: prefs.meal, color: 'text-orange-500', bg: 'bg-orange-50' },
                 { id: 'commute', label: '通勤时长', icon: Car, value: prefs.commute, color: 'text-blue-500', bg: 'bg-blue-50' },
                 { id: 'earlyArrival', label: '提前到岗', icon: Clock, value: prefs.earlyArrival, color: 'text-green-500', bg: 'bg-green-50' },
-                ].map((item, idx) => (
+                ].map((item) => (
                 <div key={item.id} className="p-8">
                     <div className="flex justify-between items-center mb-6">
                     <div className="flex items-center space-x-4">
