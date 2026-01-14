@@ -28,7 +28,6 @@ const App: React.FC = () => {
   const [settingsView, setSettingsView] = useState<SettingsSubView>(SettingsSubView.MAIN);
   const [shifts, setShifts] = useState<Shift[]>(() => {
     const saved = localStorage.getItem('shifts');
-    // 如果没有保存过或者格式不对，使用默认班次
     return saved ? JSON.parse(saved) : DEFAULT_SHIFTS;
   });
   const [prefs, setPrefs] = useState<UserPreferences>(() => {
@@ -378,17 +377,16 @@ const App: React.FC = () => {
     onChange: (val: string) => void 
   }) => {
     const listRef = useRef<HTMLDivElement>(null);
-    const itemHeight = 48; // 更大的项高度，操作更顺手
+    const itemHeight = 48; 
 
     useEffect(() => {
       const idx = items.indexOf(value);
       if (listRef.current && idx !== -1) {
-        // 禁止平滑滚动首次定位，防止弹窗闪烁
         listRef.current.style.scrollBehavior = 'auto';
         listRef.current.scrollTop = idx * itemHeight;
         listRef.current.style.scrollBehavior = 'smooth';
       }
-    }, []);
+    }, [items, value]);
 
     const onScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
       const scrollTop = e.currentTarget.scrollTop;
@@ -402,13 +400,9 @@ const App: React.FC = () => {
 
     return (
       <div className="relative flex-1 h-[240px] overflow-hidden">
-        {/* iOS 风格半透明渐变遮罩 */}
         <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-20 pointer-events-none opacity-90"></div>
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none opacity-90"></div>
-        
-        {/* 选中的高亮框 */}
         <div className="absolute top-1/2 left-0 right-0 h-[48px] -translate-y-1/2 bg-rose-50/50 rounded-2xl pointer-events-none z-0 border-y border-rose-100"></div>
-        
         <div 
           ref={listRef}
           onScroll={onScroll}
