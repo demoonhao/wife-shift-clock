@@ -1,0 +1,19 @@
+
+{
+  "name": "爱妻倒班闹钟",
+  "short_name": "倒班闹钟",
+  "description": "专为倒班职场人士设计的智能闹钟计算器",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f43f5e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/10435/10435105.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
