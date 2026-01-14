@@ -2,10 +2,14 @@
 import { Shift, UserPreferences, DailyPlan } from './types';
 
 export const DEFAULT_SHIFTS: Shift[] = [
-  { id: '1', name: '早班', startTime: '08:00', endTime: '17:00' },
-  { id: '2', name: '中班', startTime: '14:00', endTime: '22:00' },
-  { id: '3', name: '晚班', startTime: '19:00', endTime: '04:00' },
-  { id: '4', name: '休', startTime: '00:00', endTime: '00:00' },
+  { id: 'off', name: '休班', startTime: '00:00', endTime: '00:00' },
+  { id: 'zao8', name: '早8', startTime: '08:30', endTime: '18:00' },
+  { id: 'chang0', name: '常0', startTime: '09:00', endTime: '18:30' },
+  { id: 'bai11', name: '白11', startTime: '09:00', endTime: '18:00' },
+  { id: 'bai1', name: '白1', startTime: '09:30', endTime: '19:00' },
+  { id: 'wan8', name: '晚8', startTime: '11:30', endTime: '21:00' },
+  { id: 'wan9', name: '晚9', startTime: '12:15', endTime: '21:15' },
+  { id: 'ye7', name: '夜7', startTime: '13:00', endTime: '22:30' },
 ];
 
 export const DEFAULT_PREFS: UserPreferences = {
@@ -19,5 +23,5 @@ export const WEEK_DAYS = ['周一', '周二', '周三', '周四', '周五', '周
 
 export const INITIAL_WEEKLY_PLAN: DailyPlan[] = WEEK_DAYS.map((_, i) => ({
   dayIndex: i,
-  shiftId: i < 5 ? '1' : '4', // Default Mon-Fri Morning, Sat-Sun Rest
+  shiftId: i < 5 ? 'zao8' : 'off', // 默认周一到周五早8，周末休班
 }));
