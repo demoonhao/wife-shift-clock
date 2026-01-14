@@ -475,15 +475,16 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="h-screen w-screen bg-[#f9fafb] flex flex-col max-w-md mx-auto overflow-hidden">
+    <div className="h-[100dvh] w-screen bg-[#f9fafb] flex flex-col max-w-md mx-auto overflow-hidden">
       <div className="flex-1 overflow-hidden relative">
         {activeTab === ViewType.HOME && renderHome()}
         {activeTab === ViewType.SCHEDULE && renderSchedule()}
         {activeTab === ViewType.SETTINGS && renderSettings()}
       </div>
       
-      <div className="shrink-0 bg-white/90 backdrop-blur-2xl border-t border-gray-100 flex justify-around items-center py-3 px-8 shadow-sm" 
-           style={{ paddingBottom: 'calc(0.6rem + env(safe-area-inset-bottom))' }}>
+      {/* 底部导航栏适配：增加更多的 bottom padding 并使用动态高度 */}
+      <div className="shrink-0 bg-white/90 backdrop-blur-2xl border-t border-gray-100 flex justify-around items-center py-4 px-8 shadow-sm" 
+           style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}>
         {[
           { id: ViewType.HOME, icon: HomeIcon, label: '首页' },
           { id: ViewType.SCHEDULE, icon: Calendar, label: '排班' },
