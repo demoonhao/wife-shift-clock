@@ -13,15 +13,18 @@ export const DEFAULT_SHIFTS: Shift[] = [
 ];
 
 export const DEFAULT_PREFS: UserPreferences = {
-  washUp: 20,
-  meal: 20,
-  commute: 40,
-  earlyArrival: 10,
+  snooze: 30,
+  washUp: 10,
+  breakfast: 15,
+  lunch: 30,
+  commute: 25,
+  earlyArrival: 15,
+  cutoffHour: 4,
 };
 
 export const WEEK_DAYS = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
 export const INITIAL_WEEKLY_PLAN: DailyPlan[] = WEEK_DAYS.map((_, i) => ({
   dayIndex: i,
-  shiftId: i < 5 ? 'zao8' : 'off', // 默认周一到周五早8，周末休班
+  shiftId: i < 5 ? 'zao8' : 'off', 
 }));
