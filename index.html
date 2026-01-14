@@ -3,15 +3,42 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>爱妻倒班闹钟</title>
+    
+    <!-- PWA 核心标签 -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#f43f5e"> <!-- Rose-500 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="倒班闹钟">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        :root {
+            /* 适配刘海屏的安全区域 */
+            --safe-area-inset-top: env(safe-area-inset-top);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
+            /* 禁止长按弹出系统菜单（更有 APP 感） */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            background-color: #f9fafb;
         }
+
+        /* 允许输入框等地方可以选择文字 */
+        input, select, textarea {
+            -webkit-user-select: auto;
+            user-select: auto;
+        }
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -36,5 +63,13 @@
 <body class="bg-gray-50 text-gray-900">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+        // 注册一个空的 Service Worker 触发浏览器的 PWA 安装提示
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>
